@@ -10,12 +10,12 @@ metadata:
   ai-usage: ai-assisted
   ms.service: azure-ai-speech
 title: Develop an Azure AI Voice Live Agent
-summary: "Learn how to develop an Azure AI Voice Live agent using the Voice Live API and SDK."
+summary: "Learn how to develop an Azure AI Voice Live agent using the Voice Live API and SDK. This module covers the fundamentals of the Voice Live platform, including API integration, SDK usage, and building conversational AI agents."
 abstract: |
   After completing this module, you'll be able to: 
     - "TODO learning objective 1"
     - "TODO learning objective 2"
-    - "TODO learning objective 3 (if needed; see https://review.docs.microsoft.com/help/learn/id-guidance-learning-objectives?branch=main)"
+    - "TODO learning objective 3"
 prerequisites: |
   Before beginning this module, you should have:
   - "Programming experience with languages such as Python, JavaScript, or C#."
@@ -36,7 +36,7 @@ units:
 - learn.wwl.develop-voice-live-agent.voice-live-api
 - learn.wwl.develop-voice-live-agent.voice-live-sdk
 - learn.wwl.develop-voice-live-agent.exercise-develop-agent
-- learn.wwl.develop-voice-live-agen.module-assessment
+- learn.wwl.develop-voice-live-agent.module-assessment
 - learn.wwl.develop-voice-live-agent.summary
 badge:
   uid: learn.wwl.develop-voice-live-agent.badge

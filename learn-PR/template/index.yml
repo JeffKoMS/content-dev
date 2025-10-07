@@ -15,7 +15,7 @@ abstract: |
   After completing this module, you'll be able to: 
     - "TODO learning objective 1"
     - "TODO learning objective 2"
-    - "TODO learning objective 3 (if needed; see https://review.docs.microsoft.com/help/learn/id-guidance-learning-objectives?branch=main)"
+    - "TODO learning objective 3"
 prerequisites: |
   Before beginning this module, you should have:
   - "Programming experience with languages such as Python, JavaScript, or C#."
