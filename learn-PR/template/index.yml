@@ -35,7 +35,7 @@ units:
 - learn.wwl.develop-voice-live-agent.voice-live-api
 - learn.wwl.develop-voice-live-agent.voice-live-sdk
 - learn.wwl.develop-voice-live-agent.exercise-develop-agent
-- learn.wwl.develop-voice-live-agen.module-assessment
+- learn.wwl.develop-voice-live-agent.module-assessment
 - learn.wwl.develop-voice-live-agent.summary
 badge:
   uid: learn.wwl.develop-voice-live-agent.badge
