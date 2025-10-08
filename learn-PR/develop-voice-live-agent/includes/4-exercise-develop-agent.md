@@ -24,7 +24,7 @@ Select the **Launch Exercise** button to open the exercise instructions in a new
 
 <br/>
 
-<a href="<fwlink>" target="_blank">
+<a href="https://go.microsoft.com/fwlink/?linkid=2338402" target="_blank">
     <img src="../media/launch-exercise.png" alt="Button to launch exercise.">
 </a>
 
