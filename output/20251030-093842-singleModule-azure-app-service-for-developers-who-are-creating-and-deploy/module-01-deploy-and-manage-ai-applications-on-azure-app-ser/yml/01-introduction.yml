@@ -1,0 +1,13 @@
+### YamlMime:ModuleUnit
+uid: learn.wwl.deploy-ai-solutions-azure-app-service-module.introduction
+title: Introduction
+metadata:
+  title: Introduction
+  description: Scenario-driven introduction presenting a retail company deploying an AI-powered product recommendation engine. Covers the business challenge of scaling intelligent applications, the value of Azure App Service for AI workloads, module roadmap, and prerequisite confirmation.
+  author: github-contributor
+  ms.author: mslearn-contributor
+  ms.date: 01/15/2024
+  ms.topic: unit
+durationInMinutes: 5
+content: |
+  [!include[](includes/01-introduction.md)]

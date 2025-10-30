@@ -1,0 +1,13 @@
+### YamlMime:ModuleUnit
+uid: learn.wwl.deploy-ai-solutions-azure-app-service-module.exercise-deploy-ai-app
+title: 'Exercise: Deploy and configure an AI-powered web application'
+metadata:
+  title: 'Exercise: Deploy and configure an AI-powered web application'
+  description: Hands-on exercise deploying a product recommendation app to Azure App Service with managed identity authentication to Azure OpenAI Service. Includes validation and cleanup steps.
+  author: github-contributor
+  ms.author: mslearn-contributor
+  ms.date: 01/15/2024
+  ms.topic: unit
+durationInMinutes: 15
+content: |
+  [!include[](includes/05-exercise-deploy-and-configure-an-ai-powered-web-ap.md)]
