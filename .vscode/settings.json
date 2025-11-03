@@ -1,0 +1,5 @@
+{
+    "contentGenerator.workflow.outputDirectory": "output",
+    "contentGenerator.workflow.timeoutSeconds": 300,
+    "contentGenerator.status.defaultViewMode": "default"
+}
