@@ -1,0 +1,13 @@
+### YamlMime:ModuleUnit
+uid: learn.wwl.implement-azure-managed-redis.exercise-deploy-configure-cache
+metadata:
+  title: Exercise - Deploy and configure Azure Managed Redis with secure access
+  description: Deploy Azure Managed Redis, configure private endpoint, connect application with Azure AD authentication, and implement caching patterns
+  author: markjulmar
+  ms.author: smmark
+  ms.date: 01/15/2025
+  ms.topic: unit
+title: Exercise - Deploy and configure Azure Managed Redis with secure access
+durationInMinutes: 15
+content: |
+  [!include[](includes/5-exercise-deploy-configure-cache.md)]

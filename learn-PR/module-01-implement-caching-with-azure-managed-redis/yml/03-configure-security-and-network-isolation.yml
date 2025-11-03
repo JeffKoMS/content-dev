@@ -1,0 +1,13 @@
+### YamlMime:ModuleUnit
+uid: learn.wwl.implement-azure-managed-redis.configure-security-networking
+metadata:
+  title: Configure security and network isolation for Azure Managed Redis
+  description: Implement network isolation using virtual networks and private endpoints, configure Azure AD authentication, and apply access control best practices
+  author: markjulmar
+  ms.author: smmark
+  ms.date: 01/15/2025
+  ms.topic: unit
+title: Configure security and network isolation
+durationInMinutes: 13
+content: |
+  [!include[](includes/3-configure-security-networking.md)]

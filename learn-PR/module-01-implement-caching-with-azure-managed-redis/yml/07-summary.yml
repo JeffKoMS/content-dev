@@ -1,0 +1,13 @@
+### YamlMime:ModuleUnit
+uid: learn.wwl.implement-azure-managed-redis.summary
+metadata:
+  title: Summary - Azure Managed Redis implementation review and next steps
+  description: Review key concepts from Redis implementation and explore next steps for advanced caching scenarios and performance optimization
+  author: markjulmar
+  ms.author: smmark
+  ms.date: 01/15/2025
+  ms.topic: unit
+title: Summary
+durationInMinutes: 2
+content: |
+  [!include[](includes/7-summary.md)]

@@ -1,0 +1,13 @@
+### YamlMime:ModuleUnit
+uid: learn.wwl.implement-azure-managed-redis.knowledge-check
+metadata:
+  title: Knowledge check - Azure Managed Redis implementation
+  description: Assess understanding of tier selection, security configuration, caching patterns, and monitoring through scenario-based questions
+  author: markjulmar
+  ms.author: smmark
+  ms.date: 01/15/2025
+  ms.topic: unit
+title: Knowledge check
+durationInMinutes: 3
+content: |
+  [!include[](includes/6-knowledge-check.md)]

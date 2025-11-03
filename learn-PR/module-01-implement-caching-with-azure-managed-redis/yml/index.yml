@@ -1,0 +1,47 @@
+### YamlMime:Module
+uid: learn.wwl.implement-azure-managed-redis
+metadata:
+  title: Implement caching with Azure Managed Redis
+  description: Configure Azure Managed Redis instances to improve application performance and scalability. Learn to select appropriate service tiers, implement secure connections, and optimize cache operations for enterprise workloads.
+  author: markjulmar
+  ms.author: smmark
+  ms.date: 01/15/2025
+  ms.service: azure-cache-redis
+  ms.topic: module-standard-task-based
+title: Implement caching with Azure Managed Redis
+summary: Configure Azure Managed Redis instances to improve application performance and scalability. Learn to select appropriate service tiers, implement secure connections, and optimize cache operations for enterprise workloads.
+abstract: |
+  By the end of this module, you'll be able to:
+  - Evaluate Azure Managed Redis service tiers and select the appropriate tier for specific workload requirements
+  - Configure Azure Managed Redis instances with security best practices including network isolation and authentication
+  - Implement cache-aside and cache-through patterns to optimize application data access
+  - Monitor cache performance metrics and troubleshoot common Redis operational issues
+prerequisites: |
+  - Familiarity with Azure portal and basic resource management
+  - Understanding of application architecture and data access patterns
+  - Knowledge of cloud networking concepts including virtual networks and private endpoints
+iconUrl: /training/achievements/implement-azure-managed-redis.svg
+levels:
+  - intermediate
+roles:
+  - developer
+  - solution-architect
+  - administrator
+products:
+  - azure-cache-redis
+  - azure-monitor
+  - azure-virtual-network
+subjects:
+  - cache
+  - cloud-computing
+  - database
+units:
+  - learn.wwl.implement-azure-managed-redis.introduction
+  - learn.wwl.implement-azure-managed-redis.understand-service-tiers
+  - learn.wwl.implement-azure-managed-redis.configure-security-networking
+  - learn.wwl.implement-azure-managed-redis.implement-caching-patterns
+  - learn.wwl.implement-azure-managed-redis.exercise-deploy-configure-cache
+  - learn.wwl.implement-azure-managed-redis.knowledge-check
+  - learn.wwl.implement-azure-managed-redis.summary
+badge:
+  uid: learn.wwl.implement-azure-managed-redis.badge

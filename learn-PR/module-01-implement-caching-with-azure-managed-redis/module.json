@@ -1,0 +1,318 @@
+{
+  "id": "implement-azure-managed-redis",
+  "title": "Implement caching with Azure Managed Redis",
+  "description": "Configure Azure Managed Redis instances to improve application performance and scalability. Learn to select appropriate service tiers, implement secure connections, and optimize cache operations for enterprise workloads.",
+  "learningObjectives": [
+    "Evaluate Azure Managed Redis service tiers and select the appropriate tier for specific workload requirements",
+    "Configure Azure Managed Redis instances with security best practices including network isolation and authentication",
+    "Implement cache-aside and cache-through patterns to optimize application data access",
+    "Monitor cache performance metrics and troubleshoot common Redis operational issues"
+  ],
+  "estimatedDurationMinutes": 62,
+  "yml": "### YamlMime:Module\nuid: learn.wwl.implement-azure-managed-redis\nmetadata:\n  title: Implement caching with Azure Managed Redis\n  description: Configure Azure Managed Redis instances to improve application performance and scalability. Learn to select appropriate service tiers, implement secure connections, and optimize cache operations for enterprise workloads.\n  author: markjulmar\n  ms.author: smmark\n  ms.date: 01/15/2025\n  ms.service: azure-cache-redis\n  ms.topic: module-standard-task-based\ntitle: Implement caching with Azure Managed Redis\nsummary: Configure Azure Managed Redis instances to improve application performance and scalability. Learn to select appropriate service tiers, implement secure connections, and optimize cache operations for enterprise workloads.\nabstract: |\n  By the end of this module, you'll be able to:\n  - Evaluate Azure Managed Redis service tiers and select the appropriate tier for specific workload requirements\n  - Configure Azure Managed Redis instances with security best practices including network isolation and authentication\n  - Implement cache-aside and cache-through patterns to optimize application data access\n  - Monitor cache performance metrics and troubleshoot common Redis operational issues\nprerequisites: |\n  - Familiarity with Azure portal and basic resource management\n  - Understanding of application architecture and data access patterns\n  - Knowledge of cloud networking concepts including virtual networks and private endpoints\niconUrl: /training/achievements/implement-azure-managed-redis.svg\nlevels:\n  - intermediate\nroles:\n  - developer\n  - solution-architect\n  - administrator\nproducts:\n  - azure-cache-redis\n  - azure-monitor\n  - azure-virtual-network\nsubjects:\n  - cache\n  - cloud-computing\n  - database\nunits:\n  - learn.wwl.implement-azure-managed-redis.introduction\n  - learn.wwl.implement-azure-managed-redis.understand-service-tiers\n  - learn.wwl.implement-azure-managed-redis.configure-security-networking\n  - learn.wwl.implement-azure-managed-redis.implement-caching-patterns\n  - learn.wwl.implement-azure-managed-redis.exercise-deploy-configure-cache\n  - learn.wwl.implement-azure-managed-redis.knowledge-check\n  - learn.wwl.implement-azure-managed-redis.summary\nbadge:\n  uid: learn.wwl.implement-azure-managed-redis.badge",
+  "units": [
+    {
+      "id": "introduction",
+      "title": "Introduction",
+      "type": "introduction",
+      "description": "Explore how Azure Managed Redis accelerates application performance by reducing database load and latency. Learn about the business value of caching and the module roadmap.",
+      "estimatedDurationMinutes": 5,
+      "yml": "### YamlMime:ModuleUnit\nuid: learn.wwl.implement-azure-managed-redis.introduction\nmetadata:\n  title: Introduction to Azure Managed Redis caching\n  description: Explore how Azure Managed Redis accelerates application performance by reducing database load and latency\n  author: markjulmar\n  ms.author: smmark\n  ms.date: 01/15/2025\n  ms.topic: unit\ntitle: Introduction\ndurationInMinutes: 5\ncontent: |\n  [!include[](includes/1-introduction.md)]",
+      "diagramMermaid": null,
+      "diagramCaption": null,
+      "diagramAltText": null,
+      "comparisonTable": null,
+      "comparisonTableCaption": null,
+      "images": [],
+      "imageSuggestions": [
+        {
+          "title": "Application architecture with Redis cache layer",
+          "description": "Diagram showing an application tier querying Redis cache before falling back to a database, illustrating reduced database load and improved response times",
+          "altText": "Architecture diagram showing web application connecting to Redis cache as first data source, with fallback path to SQL database. Arrows indicate fast cache responses (5ms) versus slower database queries (150ms)."
+        }
+      ],
+      "videoSuggestions": [],
+      "interactiveSuggestions": [],
+      "visualAccessibilityNotes": "Introduction image suggestions describe performance benefits of caching layer with specific latency comparisons accessible to screen readers."
+    },
+    {
+      "id": "understand-service-tiers",
+      "title": "Evaluate Azure Managed Redis service tiers",
+      "type": "concept",
+      "description": "Compare Basic, Standard, Premium, and Enterprise tiers to select the right Redis offering based on performance, availability, and feature requirements for production workloads.",
+      "estimatedDurationMinutes": 12,
+      "yml": "### YamlMime:ModuleUnit\nuid: learn.wwl.implement-azure-managed-redis.understand-service-tiers\nmetadata:\n  title: Evaluate Azure Managed Redis service tiers\n  description: Compare Basic, Standard, Premium, and Enterprise tiers to select the right Redis offering based on performance, availability, and feature requirements\n  author: markjulmar\n  ms.author: smmark\n  ms.date: 01/15/2025\n  ms.topic: unit\ntitle: Evaluate Azure Managed Redis service tiers\ndurationInMinutes: 12\ncontent: |\n  [!include[](includes/2-understand-service-tiers.md)]",
+      "diagramMermaid": "graph TD\n    A[Workload Analysis] --> B{SLA Required?}\n    B -->|No SLA needed| C[Basic Tier]\n    B -->|99.9% SLA| D{Advanced Features?}\n    D -->|Standard features| E[Standard Tier]\n    D -->|Clustering/Geo-replication| F{Redis Version?}\n    F -->|OSS Redis| G[Premium Tier]\n    F -->|Redis Enterprise| H[Enterprise Tier]",
+      "diagramCaption": "Decision tree for selecting Azure Managed Redis service tier based on workload requirements",
+      "diagramAltText": "Flowchart starting with workload analysis, branching on SLA requirements. Basic tier for development with no SLA. Standard tier for 99.9% SLA without clustering. Premium tier for OSS Redis with clustering and geo-replication. Enterprise tier for Redis Enterprise features with 99.99% SLA.",
+      "comparisonTable": {
+        "headers": [
+          "Tier",
+          "SLA",
+          "Replication",
+          "Clustering",
+          "Max Memory",
+          "Use Case"
+        ],
+        "rows": [
+          [
+            "Basic",
+            "None",
+            "No",
+            "No",
+            "53 GB",
+            "Development and testing"
+          ],
+          [
+            "Standard",
+            "99.9%",
+            "Yes",
+            "No",
+            "53 GB",
+            "Production single-node workloads"
+          ],
+          [
+            "Premium",
+            "99.95%",
+            "Yes",
+            "Yes",
+            "1.2 TB",
+            "High-throughput production with clustering"
+          ],
+          [
+            "Enterprise",
+            "99.99%",
+            "Yes",
+            "Yes",
+            "4.5 TB",
+            "Mission-critical workloads with Redis Enterprise features"
+          ]
+        ]
+      },
+      "comparisonTableCaption": "Azure Managed Redis service tier comparison showing SLA guarantees, replication support, clustering capabilities, maximum memory, and recommended use cases",
+      "images": [],
+      "imageSuggestions": [
+        {
+          "title": "Premium tier clustering architecture",
+          "description": "Diagram showing how Premium tier distributes data across multiple shards with replica nodes for high availability",
+          "altText": "Architecture diagram showing Premium tier Redis cluster with three master shards, each having one replica node. Hash slots distributed across shards, demonstrating horizontal scaling and automatic failover capability."
+        }
+      ],
+      "videoSuggestions": [],
+      "interactiveSuggestions": [
+        {
+          "title": "Tier selection calculator",
+          "description": "Interactive tool where learners input workload requirements (throughput ops/sec, data size GB, availability %, clustering needed) and receive tier recommendations with cost estimates"
+        }
+      ],
+      "visualAccessibilityNotes": "Comparison table presents tier attributes in structured format for screen readers. Decision tree mermaid diagram describes each branching criterion with clear labels for SLA, features, and version preferences."
+    },
+    {
+      "id": "configure-security-networking",
+      "title": "Configure security and network isolation",
+      "type": "concept",
+      "description": "Implement network isolation using virtual networks and private endpoints, configure Azure AD authentication with RBAC, and apply access control best practices for Redis instances.",
+      "estimatedDurationMinutes": 13,
+      "yml": "### YamlMime:ModuleUnit\nuid: learn.wwl.implement-azure-managed-redis.configure-security-networking\nmetadata:\n  title: Configure security and network isolation for Azure Managed Redis\n  description: Implement network isolation using virtual networks and private endpoints, configure Azure AD authentication, and apply access control best practices\n  author: markjulmar\n  ms.author: smmark\n  ms.date: 01/15/2025\n  ms.topic: unit\ntitle: Configure security and network isolation\ndurationInMinutes: 13\ncontent: |\n  [!include[](includes/3-configure-security-networking.md)]",
+      "diagramMermaid": "graph LR\n    A[Application in VNet] --> B[Private Endpoint]\n    B --> C[Azure Managed Redis]\n    D[Public Internet] -.->|Blocked| C\n    E[Azure AD Identity] --> F[RBAC Authorization]\n    F --> C\n    G[Access Keys] -.->|Legacy Auth| C\n    style D fill:#f99,stroke:#900\n    style E fill:#9f9,stroke:#090",
+      "diagramCaption": "Azure Managed Redis security architecture showing private endpoint isolation and Azure AD authentication flow",
+      "diagramAltText": "Network security diagram showing application in virtual network connecting to Redis through private endpoint. Public internet access is blocked with red styling. Azure AD identity path flows through RBAC authorization to Redis, highlighted in green as recommended. Legacy access key authentication shown as alternate dotted path.",
+      "comparisonTable": {
+        "headers": [
+          "Authentication Method",
+          "Security Level",
+          "Key Rotation",
+          "Audit Support",
+          "Recommended For"
+        ],
+        "rows": [
+          [
+            "Access Keys",
+            "Medium",
+            "Manual",
+            "Limited",
+            "Legacy applications, testing"
+          ],
+          [
+            "Azure AD with RBAC",
+            "High",
+            "Automatic",
+            "Full audit logs",
+            "Production workloads, managed identities"
+          ],
+          [
+            "Azure AD + Private Endpoint",
+            "Highest",
+            "Automatic",
+            "Full audit logs",
+            "Mission-critical, compliance-sensitive workloads"
+          ]
+        ]
+      },
+      "comparisonTableCaption": "Authentication method comparison for Azure Managed Redis showing security characteristics and recommended scenarios",
+      "images": [],
+      "imageSuggestions": [
+        {
+          "title": "VNet injection versus private endpoint comparison",
+          "description": "Side-by-side diagram comparing VNet injection architecture (Premium tier) with private endpoint architecture (all tiers)",
+          "altText": "Side-by-side comparison showing VNet injection on left with Redis deployed inside customer VNet subnet, and private endpoint on right with Redis in Microsoft network accessed via private IP in customer VNet. Annotations highlight tier availability and configuration complexity differences."
+        }
+      ],
+      "videoSuggestions": [],
+      "interactiveSuggestions": [
+        {
+          "title": "Private endpoint configuration walkthrough",
+          "description": "Step-by-step interactive guide for configuring private endpoint with DNS resolution and testing connectivity from an application"
+        }
+      ],
+      "visualAccessibilityNotes": "Network security diagram uses color and labels to distinguish recommended (green) versus legacy (dotted) authentication paths. Comparison table provides structured security attribute data accessible to screen readers."
+    },
+    {
+      "id": "implement-caching-patterns",
+      "title": "Implement caching patterns for data access optimization",
+      "type": "concept",
+      "description": "Apply cache-aside, write-through, and read-through patterns to optimize application data access. Configure eviction policies, set appropriate TTL values, and design cache keys for efficient retrieval.",
+      "estimatedDurationMinutes": 12,
+      "yml": "### YamlMime:ModuleUnit\nuid: learn.wwl.implement-azure-managed-redis.implement-caching-patterns\nmetadata:\n  title: Implement caching patterns for data access optimization\n  description: Apply cache-aside, write-through, and read-through patterns to optimize data access with appropriate eviction policies and TTL strategies\n  author: markjulmar\n  ms.author: smmark\n  ms.date: 01/15/2025\n  ms.topic: unit\ntitle: Implement caching patterns for data access optimization\ndurationInMinutes: 12\ncontent: |\n  [!include[](includes/4-implement-caching-patterns.md)]",
+      "diagramMermaid": "sequenceDiagram\n    participant App\n    participant Cache\n    participant DB\n    \n    App->>Cache: GET key\n    alt Cache Hit\n        Cache-->>App: Return cached data\n    else Cache Miss\n        Cache-->>App: NULL\n        App->>DB: Query database\n        DB-->>App: Return data\n        App->>Cache: SET key data EX 3600\n        Cache-->>App: OK\n    end",
+      "diagramCaption": "Cache-aside pattern sequence diagram showing application logic for handling cache hits and misses",
+      "diagramAltText": "Sequence diagram illustrating cache-aside pattern flow. Application requests key from cache. On cache hit, data returns immediately. On cache miss, cache returns null, application queries database, receives data, stores in cache with 3600 second TTL, then returns data to caller.",
+      "comparisonTable": {
+        "headers": [
+          "Caching Pattern",
+          "Write Path",
+          "Consistency",
+          "Latency",
+          "Best For"
+        ],
+        "rows": [
+          [
+            "Cache-Aside",
+            "Application manages",
+            "Eventual",
+            "Low read",
+            "Read-heavy workloads, reference data"
+          ],
+          [
+            "Write-Through",
+            "Cache → Database",
+            "Strong",
+            "High write",
+            "Write-heavy workloads requiring consistency"
+          ],
+          [
+            "Write-Behind",
+            "Async write to DB",
+            "Eventual",
+            "Low write",
+            "High write throughput, tolerate brief data loss risk"
+          ],
+          [
+            "Read-Through",
+            "Cache loads from DB",
+            "Strong",
+            "Low read",
+            "Simplified application code, transparent caching"
+          ]
+        ]
+      },
+      "comparisonTableCaption": "Common caching pattern comparison showing write behavior, consistency guarantees, latency characteristics, and recommended use cases",
+      "images": [],
+      "imageSuggestions": [
+        {
+          "title": "Eviction policy behavior under memory pressure",
+          "description": "Visual showing how LRU, LFU, and volatile-TTL eviction policies select different items for removal when cache reaches max memory",
+          "altText": "Diagram showing cache at max memory with six items. LRU policy highlights least recently accessed item. LFU policy highlights least frequently accessed item. Volatile-TTL policy highlights item with shortest remaining TTL. Annotations explain selection criteria for each policy."
+        }
+      ],
+      "videoSuggestions": [
+        {
+          "title": "Cache eviction policy demonstration",
+          "description": "Animated visualization showing how LRU, LFU, and TTL-based eviction policies select items for removal under memory pressure with real-time access pattern simulation"
+        }
+      ],
+      "interactiveSuggestions": [
+        {
+          "title": "TTL and eviction policy calculator",
+          "description": "Interactive tool where learners input data volatility (update frequency), access patterns (read/write ratio), and cache size to receive recommended TTL values and eviction policy settings"
+        }
+      ],
+      "visualAccessibilityNotes": "Sequence diagram narrates each step of cache-aside flow with conditional logic for hit versus miss scenarios. Comparison table structures pattern attributes for screen reader navigation."
+    },
+    {
+      "id": "exercise-deploy-configure-cache",
+      "title": "Exercise - Deploy and configure Azure Managed Redis with secure access",
+      "type": "exercise",
+      "description": "Deploy an Azure Managed Redis Standard tier instance, configure private endpoint for network isolation, connect a .NET application using Azure AD authentication, implement cache-aside pattern, and validate with Azure Monitor metrics.",
+      "estimatedDurationMinutes": 15,
+      "yml": "### YamlMime:ModuleUnit\nuid: learn.wwl.implement-azure-managed-redis.exercise-deploy-configure-cache\nmetadata:\n  title: Exercise - Deploy and configure Azure Managed Redis with secure access\n  description: Deploy Azure Managed Redis, configure private endpoint, connect application with Azure AD authentication, and implement caching patterns\n  author: markjulmar\n  ms.author: smmark\n  ms.date: 01/15/2025\n  ms.topic: unit\ntitle: Exercise - Deploy and configure Azure Managed Redis with secure access\ndurationInMinutes: 15\ncontent: |\n  [!include[](includes/5-exercise-deploy-configure-cache.md)]",
+      "diagramMermaid": null,
+      "diagramCaption": null,
+      "diagramAltText": null,
+      "comparisonTable": null,
+      "comparisonTableCaption": null,
+      "images": [],
+      "imageSuggestions": [
+        {
+          "title": "Azure portal Redis creation networking tab",
+          "description": "Screenshot showing networking configuration options including public endpoint, private endpoint, and VNet injection choices",
+          "altText": "Azure portal screenshot of Redis cache creation wizard on networking tab. Radio buttons show public endpoint (selected for this exercise), private endpoint, and VNet injection options. Private endpoint section shows add button and DNS configuration settings."
+        },
+        {
+          "title": "Azure Monitor cache metrics dashboard",
+          "description": "Screenshot showing key Redis performance metrics including cache hits, cache misses, server load, and connected clients",
+          "altText": "Azure Monitor metrics dashboard displaying four charts: cache hit rate at 87%, cache miss count trending down, server load at 42% CPU, and connected clients showing 12 active connections. Time range set to last 30 minutes."
+        }
+      ],
+      "videoSuggestions": [],
+      "interactiveSuggestions": [
+        {
+          "title": "Azure sandbox environment",
+          "description": "Integrated sandbox providing temporary Azure subscription with step-by-step guidance for deploying Redis Standard tier, configuring private endpoint, and testing cache operations with provided sample application"
+        }
+      ],
+      "visualAccessibilityNotes": "Exercise includes detailed Azure CLI commands with parameter descriptions and expected JSON output. Portal navigation instructions specify exact blade names and button labels for assistive technology users."
+    },
+    {
+      "id": "knowledge-check",
+      "title": "Knowledge check",
+      "type": "knowledge-check",
+      "description": "Assess understanding of Azure Managed Redis tier selection, security configuration, caching patterns, and monitoring through three scenario-based questions testing application of concepts to real-world situations.",
+      "estimatedDurationMinutes": 3,
+      "yml": "### YamlMime:ModuleUnit\nuid: learn.wwl.implement-azure-managed-redis.knowledge-check\nmetadata:\n  title: Knowledge check - Azure Managed Redis implementation\n  description: Assess understanding of tier selection, security configuration, caching patterns, and monitoring through scenario-based questions\n  author: markjulmar\n  ms.author: smmark\n  ms.date: 01/15/2025\n  ms.topic: unit\ntitle: Knowledge check\ndurationInMinutes: 3\ncontent: |\n  [!include[](includes/6-knowledge-check.md)]",
+      "diagramMermaid": null,
+      "diagramCaption": null,
+      "diagramAltText": null,
+      "comparisonTable": null,
+      "comparisonTableCaption": null,
+      "images": [],
+      "imageSuggestions": [],
+      "videoSuggestions": [],
+      "interactiveSuggestions": [
+        {
+          "title": "Scenario-based assessment",
+          "description": "Three multiple-choice questions testing tier selection for specific workload requirements, authentication method selection for compliance scenarios, and caching pattern selection for data consistency needs"
+        }
+      ],
+      "visualAccessibilityNotes": "Knowledge check questions include detailed scenario context and answer options with clear rationales accessible to screen readers."
+    },
+    {
+      "id": "summary",
+      "title": "Summary",
+      "type": "summary",
+      "description": "Review key takeaways from implementing Azure Managed Redis including tier selection criteria, network security with private endpoints, Azure AD authentication, cache-aside pattern implementation, and monitoring strategies. Explore recommended next modules for advanced Redis scenarios.",
+      "estimatedDurationMinutes": 2,
+      "yml": "### YamlMime:ModuleUnit\nuid: learn.wwl.implement-azure-managed-redis.summary\nmetadata:\n  title: Summary - Azure Managed Redis implementation review and next steps\n  description: Review key concepts from Redis implementation and explore next steps for advanced caching scenarios and performance optimization\n  author: markjulmar\n  ms.author: smmark\n  ms.date: 01/15/2025\n  ms.topic: unit\ntitle: Summary\ndurationInMinutes: 2\ncontent: |\n  [!include[](includes/7-summary.md)]",
+      "diagramMermaid": null,
+      "diagramCaption": null,
+      "diagramAltText": null,
+      "comparisonTable": null,
+      "comparisonTableCaption": null,
+      "images": [],
+      "imageSuggestions": [],
+      "videoSuggestions": [],
+      "interactiveSuggestions": [],
+      "visualAccessibilityNotes": "Summary unit text-based with bulleted key takeaways and next module links accessible to all learners."
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+### YamlMime:ModuleUnit
+uid: learn.wwl.implement-azure-managed-redis.implement-caching-patterns
+metadata:
+  title: Implement caching patterns for data access optimization
+  description: Apply cache-aside, write-through, and read-through patterns to optimize data access with appropriate eviction policies and TTL strategies
+  author: markjulmar
+  ms.author: smmark
+  ms.date: 01/15/2025
+  ms.topic: unit
+title: Implement caching patterns for data access optimization
+durationInMinutes: 12
+content: |
+  [!include[](includes/4-implement-caching-patterns.md)]

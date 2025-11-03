@@ -1,0 +1,13 @@
+### YamlMime:ModuleUnit
+uid: learn.wwl.implement-azure-managed-redis.introduction
+metadata:
+  title: Introduction to Azure Managed Redis caching
+  description: Explore how Azure Managed Redis accelerates application performance by reducing database load and latency
+  author: markjulmar
+  ms.author: smmark
+  ms.date: 01/15/2025
+  ms.topic: unit
+title: Introduction
+durationInMinutes: 5
+content: |
+  [!include[](includes/1-introduction.md)]
