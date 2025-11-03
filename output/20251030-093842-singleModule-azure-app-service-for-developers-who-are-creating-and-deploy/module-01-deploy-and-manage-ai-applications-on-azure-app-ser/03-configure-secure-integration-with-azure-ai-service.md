@@ -31,24 +31,32 @@ When your application handles non-sensitive data and your compliance team accept
 For regulated workloads or enterprise scenarios with strict network isolation requirements, private endpoints become mandatory despite their complexity. Your network team invests 45-60 minutes configuring VNets, subnets, and DNS zones, then maintains these resources alongside your application infrastructure. This operational cost—measured in both initial setup time and ongoing management—justifies itself only when compliance frameworks or security policies prohibit public internet access to AI services. With these trade-offs understood, you can select the configuration method that aligns with your security requirements, compliance obligations, and team capacity, knowing that Azure App Service supports migration paths as your needs evolve.
 
 ```mermaid
+%%{init: {'theme':'base', 'themeVariables': {
+    'background': '#ffffff',
+    'primaryTextColor': '#041526',
+    'actorTextColor': '#041526',
+    'lineColor': '#041526',
+    'fontFamily': 'Segoe UI, Roboto, Arial, sans-serif',
+    'fontSize': '16px'
+}}}%%
 sequenceDiagram
-    participant User
-    participant AppService as Azure App Service
-    participant KeyVault as Azure Key Vault
-    participant OpenAI as Azure OpenAI Service
-    participant AIServices as Azure AI Services
-    participant AppInsights as Application Insights
-    
-    User->>AppService: HTTPS Request (product query)
-    AppService->>KeyVault: Retrieve OpenAI API Key<br/>(using Key Vault reference)
-    KeyVault-->>AppService: Return Secret Value
-    AppService->>OpenAI: Generate Recommendations<br/>(with API key)
-    OpenAI-->>AppService: AI Response (product list)
-    AppService->>AIServices: Analyze Product Images<br/>(with managed identity)
-    AIServices-->>AppService: Image Analysis Results
-    AppService->>AppInsights: Log Telemetry<br/>(latency, tokens used)
-    AppService-->>User: Combined Response<br/>(recommendations + images)
-    AppInsights->>AppInsights: Track AI Service Dependencies
+        participant User
+        participant AppService as Azure App Service
+        participant KeyVault as Azure Key Vault
+        participant OpenAI as Azure OpenAI Service
+        participant AIServices as Azure AI Services
+        participant AppInsights as Application Insights
+
+        User->>AppService: HTTPS Request (product query)
+        AppService->>KeyVault: Retrieve OpenAI API Key (using Key Vault reference)
+        KeyVault-->>AppService: Return Secret Value
+        AppService->>OpenAI: Generate Recommendations (with API key)
+        OpenAI-->>AppService: AI Response (product list)
+        AppService->>AIServices: Analyze Product Images (with managed identity)
+        AIServices-->>AppService: Image Analysis Results
+        AppService->>AppInsights: Log Telemetry (latency, tokens used)
+        AppService-->>User: Combined Response (recommendations + images)
+        AppInsights->>AppInsights: Track AI Service Dependencies
 ```
 
 *Secure integration sequence showing Azure App Service retrieving secrets from Key Vault and calling AI services with telemetry logging*
