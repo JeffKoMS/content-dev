@@ -1,0 +1,47 @@
+### YamlMime:Module
+uid: learn.wwl.deploy-ai-solutions-azure-app-service-module
+metadata:
+  title: Deploy and manage AI applications on Azure App Service
+  description: Enable AI engineers and developers to deploy intelligent applications using Azure App Service. Configure hosting plans, integrate Azure OpenAI Service and Azure AI Services, implement secure authentication, and establish monitoring for production AI workloads. Learn to evaluate deployment options, configure secure service integration, implement managed identity authentication, and monitor AI application performance and costs.
+  author: github-contributor
+  ms.author: mslearn-contributor
+  ms.date: 01/15/2024
+  ms.service: azure-app-service
+  ms.topic: module-standard-task-based
+title: Deploy and manage AI applications on Azure App Service
+summary: Enable AI engineers and developers to deploy intelligent applications using Azure App Service. Configure hosting plans, integrate Azure OpenAI Service and Azure AI Services, implement secure authentication, and establish monitoring for production AI workloads.
+abstract: |
+  By the end of this module, you'll be able to:
+  - Evaluate Azure App Service deployment options for AI applications and select appropriate hosting plans
+  - Configure Azure App Service to securely integrate Azure OpenAI Service and Azure AI Services
+  - Implement managed identity authentication to connect AI services without storing credentials
+  - Monitor AI application performance and costs using Azure Application Insights and App Service diagnostics
+prerequisites: |
+  - Familiarity with Azure fundamentals and the Azure portal
+  - Basic understanding of RESTful APIs and web application architecture
+  - Experience with at least one programming language (Python, C#, or JavaScript)
+  - Completion of Microsoft Learn module: 'Introduction to Azure App Service' or equivalent knowledge
+iconUrl: /learn/achievements/generic-badge.svg
+levels:
+  - intermediate
+roles:
+  - ai-engineer
+  - developer
+  - solution-architect
+products:
+  - azure-app-service
+  - azure-openai
+  - azure-ai-services
+  - azure-monitor
+subjects:
+  - artificial-intelligence
+  - cloud-computing
+units:
+- learn.wwl.deploy-ai-solutions-azure-app-service-module.introduction
+- learn.wwl.deploy-ai-solutions-azure-app-service-module.configure-ai-service-integration
+- learn.wwl.deploy-ai-solutions-azure-app-service-module.implement-secure-authentication
+- learn.wwl.deploy-ai-solutions-azure-app-service-module.exercise-deploy-ai-app
+- learn.wwl.deploy-ai-solutions-azure-app-service-module.knowledge-check
+- learn.wwl.deploy-ai-solutions-azure-app-service-module.summary
+badge:
+  uid: learn.wwl.deploy-ai-solutions-azure-app-service-module.badge

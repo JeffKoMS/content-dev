@@ -1,0 +1,13 @@
+### YamlMime:ModuleUnit
+uid: learn.wwl.deploy-ai-solutions-azure-app-service-module.configure-ai-service-integration
+title: Configure secure integration with Azure AI services
+metadata:
+  title: Configure secure integration with Azure AI services
+  description: Provide job-focused guidance on configuring Azure App Service to integrate Azure OpenAI and Azure AI Services securely using application settings, Key Vault references, and network security controls.
+  author: github-contributor
+  ms.author: mslearn-contributor
+  ms.date: 01/15/2024
+  ms.topic: unit
+durationInMinutes: 12
+content: |
+  [!include[](includes/02-configure-secure-integration-with-azure-ai-service.md)]
