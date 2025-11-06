@@ -2,17 +2,31 @@ Azure Managed Redis provides an in-memory data store based on the Redis Enterpri
 
 Azure Managed Redis can improve the performance and scalability of an application that heavily uses backend data stores. It's able to process large volumes of application requests by keeping frequently accessed data in the server memory, which can be written to and read from quickly.
 
-## Data cache
+## Common caching strategies
 
-Databases are often too large to load directly into a cache. It's common to use the cache-aside pattern to load data into the cache only as needed. When the system makes changes to the data, the system can also update the cache, which is then distributed to other clients. Additionally, the system can set an expiration on data, or use an eviction policy to trigger data updates into the cache.
+Azure Managed Redis supports many caching use cases. Following is information on three of the most common:
 
-## Content cache
+- Data cache
+- Content cache
+- Session store
 
-Many web pages are generated from templates that use static content such as headers, footers, banners. These static items shouldn't change often. Using an in-memory cache provides quick access to static content compared to backend datastores. This pattern reduces processing time and server load, allowing web servers to be more responsive. It can allow you to reduce the number of servers needed to handle loads. Azure Managed Redis provides the Redis Output Cache Provider to support this pattern with ASP.NET.
+### Data cache
 
-## Session store
+Databases are often too large to load directly into a cache, making it impractical to preload entire datasets. Azure Managed Redis excels at implementing the cache-aside pattern, where data is loaded into the cache only when requested. When an application needs data, it first checks the Redis cache. If the data isn't found (a cache miss), the application retrieves it from the database and stores it in Redis for subsequent requests.
 
-This pattern is commonly used with shopping carts and other user history data that a web application might associate with user cookies. Storing too much in a cookie can have a negative effect on performance as the cookie size grows and is passed and validated with every request. A typical solution uses the cookie as a key to query the data in a database. When you use an in-memory cache, like Azure Managed Redis, to associate information with a user is faster than interacting with a full relational database.
+When the system makes changes to the underlying data, it can update the corresponding entries in the cache, ensuring all connected clients receive the latest information. The service supports time-to-live (TTL) settings to automatically remove stale data, and configurable eviction policies (such as least-recently-used or least-frequently-used) that manage memory efficiently when the cache reaches capacity. For globally distributed applications, built-in Active-Active geo-replication synchronizes cache updates across multiple regions.
+
+### Content cache
+
+Many web pages are generated from templates that use static content such as headers, footers, banners, navigation menus, and common UI components. These elements rarely change, making them ideal candidates for caching. Storing this content in Azure Managed Redis provides sub-millisecond access compared to retrieving it from backend datastores or regenerating it on every request.
+
+This pattern dramatically reduces processing time and server load, allowing web servers to handle significantly more concurrent users. By offloading static content delivery, you can reduce the number of web servers needed to handle the same traffic load, lowering infrastructure costs. The service provides native integration through the Redis Output Cache Provider for ASP.NET applications and supports similar patterns for other frameworks. Clustering capabilities distribute large amounts of static content across multiple nodes for optimal performance.
+
+### Session store
+
+Session stores are particularly valuable for shopping carts, user preferences, authentication tokens, and other user-specific data that web applications maintain across requests. Storing too much information directly in cookies negatively impacts performance—each cookie is transmitted with every HTTP request and response, increasing bandwidth usage and latency.
+
+The typical solution stores only a session identifier in the cookie, then uses that key to retrieve full session data. Traditional implementations query this data from a database, but Azure Managed Redis delivers orders of magnitude faster performance by storing session data in memory. The service can retrieve and update user session data with sub-millisecond latency while scaling to handle millions of concurrent sessions. Automatic session expiration, high availability through replication, and seamless integration with web frameworks (ASP.NET, ASP.NET Core, Node.js, Python, Java) make it well-suited for this pattern. Active-Active geo-replication ensures users maintain their session state even during regional failovers.
 
 ## Choosing the right tier
 
@@ -28,7 +42,7 @@ One tier stores data both in-memory and on-disk:
 
 - **Flash Optimized (preview)** Enables Redis clusters to automatically move less frequently accessed data from memory (RAM) to NVMe storage. This reduces performance, but allows for cost-effective scaling of caches with large datasets.
 
-For a detailed feature comparison, visit [About Azure Managed Redis](/azure/redis/overview#choosing-the-right-tier)
+For a detailed feature comparison of the tiers, visit [About Azure Managed Redis](/azure/redis/overview#choosing-the-right-tier)
 
 ## Additional resources
 

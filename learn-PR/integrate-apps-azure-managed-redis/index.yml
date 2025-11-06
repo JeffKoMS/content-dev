@@ -1,7 +1,7 @@
 ### YamlMime:Module
 uid: learn.wwl.integrate-apps-azure-managed-redis
 metadata:
-  title: Integrated Apps With Azure Managed Redis
+  title: Integrate Apps With Azure Managed Redis
   description: "Learn how to integrate applications with Azure Managed Redis."
   ms.date: 10/7/2025
   author: jeffkoms
@@ -9,7 +9,7 @@ metadata:
   ms.topic: module-standard-task-based
   ai-usage: ai-assisted
   ms.service: azure-managed-redis
-title: Integrated apps with Azure Managed Redis
+title: Integrate apps with Azure Managed Redis
 summary: "Learn how to integrate applications with Azure Managed Redis."
 abstract: |
   After completing this module, you'll be able to: 
