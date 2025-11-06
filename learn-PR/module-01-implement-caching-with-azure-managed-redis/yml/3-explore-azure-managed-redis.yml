@@ -1,5 +1,6 @@
 ### YamlMime:ModuleUnit
-uid: learn.wwl.implement-azure-managed-redis.understand-service-tiers
+uid: learn.wwl.implement-azure-managed-redi.explore-azure-managed-redis
+
 metadata:
   title: Evaluate Azure Managed Redis service tiers
   description: Compare Basic, Standard, Premium, and Enterprise tiers to select the right Redis offering based on performance, availability, and feature requirements
@@ -10,4 +11,4 @@ metadata:
 title: Evaluate Azure Managed Redis service tiers
 durationInMinutes: 12
 content: |
-  [!include[](includes/2-understand-service-tiers.md)]
+  [!include[](includes/3-explore-azure-managed-redis.md)]

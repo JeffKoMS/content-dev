@@ -10,4 +10,4 @@ metadata:
 title: Exercise - Deploy and configure Azure Managed Redis with secure access
 durationInMinutes: 15
 content: |
-  [!include[](includes/5-exercise-deploy-configure-cache.md)]
+  [!include[](includes/05-exercise-deploy-and-configure-azure-managed-redis-.md)]

@@ -10,4 +10,4 @@ metadata:
 title: Implement caching patterns for data access optimization
 durationInMinutes: 12
 content: |
-  [!include[](includes/4-implement-caching-patterns.md)]
+  [!include[](includes/04-implement-caching-patterns-for-data-access-optimiz.md)]

@@ -10,4 +10,4 @@ metadata:
 title: Configure security and network isolation
 durationInMinutes: 13
 content: |
-  [!include[](includes/3-configure-security-networking.md)]
+  [!include[](includes/03-configure-security-and-network-isolation.md)]

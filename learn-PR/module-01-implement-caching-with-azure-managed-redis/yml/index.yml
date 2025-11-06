@@ -36,12 +36,12 @@ subjects:
   - cloud-computing
   - database
 units:
-  - learn.wwl.implement-azure-managed-redis.introduction
-  - learn.wwl.implement-azure-managed-redis.understand-service-tiers
-  - learn.wwl.implement-azure-managed-redis.configure-security-networking
-  - learn.wwl.implement-azure-managed-redis.implement-caching-patterns
-  - learn.wwl.implement-azure-managed-redis.exercise-deploy-configure-cache
-  - learn.wwl.implement-azure-managed-redis.knowledge-check
-  - learn.wwl.implement-azure-managed-redis.summary
+- learn.wwl.implement-azure-managed-redis.introduction
+- learn.wwl.implement-azure-managed-redis.configure-security-networking
+- learn.wwl.implement-azure-managed-redi.explore-azure-managed-redis
+- learn.wwl.implement-azure-managed-redis.implement-caching-patterns
+- learn.wwl.implement-azure-managed-redis.exercise-deploy-configure-cache
+- learn.wwl.implement-azure-managed-redis.knowledge-check
+- learn.wwl.implement-azure-managed-redis.summary
 badge:
   uid: learn.wwl.implement-azure-managed-redis.badge
