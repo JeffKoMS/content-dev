@@ -14,7 +14,7 @@ Azure Managed Redis supports many caching use cases. Following is information on
 
 Databases are often too large to load directly into a cache, making it impractical to preload entire datasets. Azure Managed Redis excels at implementing the cache-aside pattern, where data is loaded into the cache only when requested. When an application needs data, it first checks the Redis cache. If the data isn't found (a cache miss), the application retrieves it from the database and stores it in Redis for subsequent requests.
 
-When the system makes changes to the underlying data, it can update the corresponding entries in the cache, ensuring all connected clients receive the latest information. The service supports time-to-live (TTL) settings to automatically remove stale data, and configurable eviction policies (such as least-recently-used or least-frequently-used) that manage memory efficiently when the cache reaches capacity. For globally distributed applications, built-in Active-Active geo-replication synchronizes cache updates across multiple regions.
+When the application makes changes to the underlying data, it can also invalidate or update the corresponding cache entries to maintain consistency. The service supports time-to-live (TTL) settings to automatically remove stale data, and configurable eviction policies (such as least-recently-used or least-frequently-used) that manage memory efficiently when the cache reaches capacity. For globally distributed applications, built-in Active-Active geo-replication synchronizes cache data across multiple regions.
 
 ### Content cache
 
