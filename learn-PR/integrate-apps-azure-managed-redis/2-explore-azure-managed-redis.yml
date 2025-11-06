@@ -1,0 +1,16 @@
+### YamlMime:ModuleUnit
+uid: learn.wwl.integrate-apps-azure-managed-redis.explore-azure-managed-redis
+
+title: Explore Azure Managed Redis
+
+metadata:
+  title: Explore Azure Managed Redis
+  description: Explore Azure Managed Redis
+  ms.date: 10/7/2025
+  author: jeffkoms
+  ms.author: jeffko
+  ms.topic: unit
+azureSandbox: false
+durationInMinutes: 1
+content: |
+  [!include[](includes/2-explore-azure-managed-redis.md)]
