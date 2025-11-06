@@ -1,0 +1,14 @@
+### YamlMime:ModuleUnit
+uid: learn.wwl.integrate-apps-azure-managed-redis.client-libraries-best-practices
+title: Client libraries and development best practices
+metadata:
+  title: Client Libraries and Development Best Practices
+  description: Explore the Voice Live SDK
+  ms.date: 11/28/2025
+  author: jeffkoms
+  ms.author: jeffko
+  ms.topic: unit
+azureSandbox: false
+durationInMinutes: 1
+content: |
+  [!include[](includes/3-client-libraries-best-practices.md)]
