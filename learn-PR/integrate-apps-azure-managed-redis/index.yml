@@ -24,17 +24,17 @@ iconUrl: /learn/achievements/generic-badge.svg
 levels: 
 - intermediate
 roles: 
-  - developer
+- developer
 products: 
-  - azure-managed-redis
+- azure-managed-redis
 subjects: 
-  - data-integration
-  - cache
+- cache
 units:
 - learn.wwl.integrate-apps-azure-managed-redis.introduction
 - learn.wwl.integrate-apps-azure-managed-redis.explore-azure-managed-redis
 - learn.wwl.integrate-apps-azure-managed-redis.client-libraries-best-practices
-- learn.wwl.integrate-apps-azure-managed-redis.exercise-develop-agent
+- learn.wwl.integrate-apps-azure-managed-redis.implement-data-operations
+- learn.wwl.integrate-apps-azure-managed-redis.exercise-data-operations
 - learn.wwl.integrate-apps-azure-managed-redis.module-assessment
 - learn.wwl.integrate-apps-azure-managed-redis.summary
 badge:
