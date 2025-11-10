@@ -1,10 +1,13 @@
-Redis provides a rich set of commands for storing, retrieving, and managing data. When working with Azure Managed Redis using the redis-py Python library, you can perform various data operations efficiently. Understanding how to implement basic operations, set expiration times, and manage cache invalidation is essential for building performant applications.
+Azure Managed Redis supports standard Redis commands for data operations. This unit covers how to use the **redis** Python library to store and retrieve data, set expiration times, and manage cache invalidation.
 
+## Connect to Azure Managed Redis with the redis library
 
+Before performing data operations, establish a connection to your Azure Managed Redis instance. The `redis` library supports both synchronous and asynchronous operations. 
 
-## Connect to Azure Managed Redis with redis-py
+Azure Cache for Redis, and Azure Managed Redis, both use the same libraries for application development. However, they have different default connection ports:
 
-Before performing data operations, establish a connection to your Azure Managed Redis instance. The redis-py library supports both synchronous and asynchronous operations.
+- Ports for Azure Managed Redis and Enterprise caches: 10000
+- Ports for Azure Cache for Redis instances: 6380
 
 ```python
 import redis
@@ -23,7 +26,33 @@ if r.ping():
     print("Connected to Redis successfully")
 ```
 
-For production environments, consider using Azure Entra ID authentication with the `redis-entraid` package for enhanced security.
+For production environments, consider using Microsoft Entra ID authentication with the `redis-entraid` package for enhanced security.
+
+```python
+import redis
+from azure.identity import DefaultAzureCredential
+from redis_entraid.cred_provider import create_from_default_azure_credential
+
+# Create credential provider using DefaultAzureCredential
+credential_provider = create_from_default_azure_credential(
+    ("https://redis.azure.com/.default",),
+)
+
+# Create a Redis client with Azure Entra ID authentication
+r = redis.Redis(
+    host='your-redis-instance.redis.azure.net',
+    port=10000,
+    ssl=True,
+    decode_responses=True,
+    credential_provider=credential_provider,
+    socket_timeout=10,
+    socket_connect_timeout=10
+)
+
+# Test the connection
+if r.ping():
+    print("Connected to Redis with Entra ID authentication")
+```
 
 ## Basic data operations
 
@@ -273,7 +302,7 @@ invalidate_user_cache(1001)
 
 ### Use connection pooling
 
-The redis-py library automatically uses connection pooling, but you can configure it for optimal performance.
+The `redis` library automatically uses connection pooling, but you can configure it for optimal performance.
 
 ```python
 # Create a connection pool
