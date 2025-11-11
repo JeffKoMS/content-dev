@@ -43,7 +43,7 @@ When you develop applications with Azure Managed Redis, following best practices
 ### Data design and performance
 
 - **Use smaller values**: Divide larger data chunks into multiple keys with smaller values
-- **Handle large responses**: Optimize for many small values, increase VM size for higher bandwidth, or use multiple connection objects with round-robin distribution
+- **Handle large responses**: Optimize for many small values, increase virtual machine size for higher bandwidth, or use multiple connection objects with round-robin distribution
 - **Use pipelining**: Choose clients that support [Redis pipelining](https://redis.io/topics/pipelining) for better network efficiency
 - **Avoid expensive operations**: Don't use `KEYS` in production; use `SCAN` instead for iterating over keys
 

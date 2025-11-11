@@ -4,7 +4,7 @@ Azure Managed Redis supports standard Redis commands for data operations. This u
 
 Before performing data operations, establish a connection to your Azure Managed Redis instance. The `redis` library supports both synchronous and asynchronous operations. 
 
-Azure Cache for Redis, and Azure Managed Redis, both use the same libraries for application development. However, they have different default connection ports:
+Azure Cache for Redis and Azure Managed Redis both use the same libraries for application development. However, they have different default connection ports:
 
 - Ports for Azure Managed Redis and Enterprise caches: 10000
 - Ports for Azure Cache for Redis instances: 6380
@@ -14,7 +14,7 @@ import redis
 
 # Create a Redis client
 r = redis.Redis(
-    host='your-redis-instance.redis.azure.net',
+    host='your-redis-instance',
     port=10000,
     ssl=True,
     decode_responses=True,
@@ -40,13 +40,11 @@ credential_provider = create_from_default_azure_credential(
 
 # Create a Redis client with Azure Entra ID authentication
 r = redis.Redis(
-    host='your-redis-instance.redis.azure.net',
+    host='your-redis-instance',
     port=10000,
     ssl=True,
     decode_responses=True,
-    credential_provider=credential_provider,
-    socket_timeout=10,
-    socket_connect_timeout=10
+    credential_provider=credential_provider
 )
 
 # Test the connection
