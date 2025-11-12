@@ -10,12 +10,12 @@ metadata:
   ai-usage: ai-assisted
   ms.service: azure-managed-redis
 title: Implement data operations in Azure Managed Redis
-summary: Learn how to implement data operations in Azure Managed Redis.
+summary: Learn how to implement data operations in Azure Managed Redis. This module covers Azure Managed Redis features, client library best practices, and how to store and retrieve data efficiently.
 abstract: |
   After completing this module, you'll be able to: 
-    - TODO learning objective 1
-    - TODO learning objective 2
-    - TODO learning objective 3
+    - Explain Azure Managed Redis capabilities and caching strategies for high-performance applications
+    - Select appropriate client libraries and apply development best practices for Redis implementations
+    - Implement data operations including storage, retrieval, expiration, and cache invalidation patterns
 prerequisites: |
   Before beginning this module, you should have:
   - Programming experience with languages such as Python, JavaScript, or C#.

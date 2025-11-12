@@ -1,13 +1,10 @@
-In this exercise, you complete a Python console app that performs data operations in \<TBD>. You add the code to initialize the session, and handle session events. You use a deployment script that: deploys the AI model; creates an image of the app in Azure Container Registry (ACR) using ACR tasks; and then creates an Azure App Service instance that pulls the image. To test the app, you need an audio device with microphone and speaker capabilities.
-
-While this exercise is based on Python, you can develop similar applications other language-specific SDKs; including:
-
-- [Azure VoiceLive client library for .NET](https://www.nuget.org/packages/Azure.AI.VoiceLive/)
+In this exercise, you complete a Python console app that performs data operations in Azure Managed Redis. You add the code to create the connection and perform data operations. 
 
 Tasks performed in this exercise:
 
+- Create Azure Managed Redis resource in Azure
 - Download the base files for the app
-- ??
+- Complete the app
 
 This exercise takes approximately **30** minutes to complete.
 
@@ -15,8 +12,10 @@ This exercise takes approximately **30** minutes to complete.
 
 To complete the exercise, you need:
 
-- An Azure subscription. If you don't already have one, you can sign up for one [https://azure.microsoft.com/](https://azure.microsoft.com/).
-- An audio device with microphone and speaker capabilities.
+- An Azure subscription. If you don't already have one, you can [sign up for one](https://azure.microsoft.com/).
+- [Visual Studio Code](https://code.visualstudio.com/) on one of the [supported platforms](https://code.visualstudio.com/docs/supporting/requirements#_platforms).
+- [Python 3.12](https://www.python.org/downloads/) or greater.
+- [Azure CLI](/cli/azure/install-azure-cli?view=azure-cli-latest).
 
 ## Get started
 
