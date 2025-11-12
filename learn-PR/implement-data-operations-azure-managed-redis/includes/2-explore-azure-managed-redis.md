@@ -47,3 +47,4 @@ For a detailed feature comparison of the tiers, visit [About Azure Managed Redis
 ## Additional resources
 
 - For pricing information, visit [Azure Managed Redis Pricing](https://aka.ms/amrpricing)
+- For an architecture overview, visit [Azure Managed Redis architecture](/azure/redis/architecture)

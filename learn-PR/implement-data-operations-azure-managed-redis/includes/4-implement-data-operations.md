@@ -1,5 +1,8 @@
 Azure Managed Redis supports standard Redis commands for data operations. This unit covers how to use the **redis** Python library to store and retrieve data, set expiration times, and manage cache invalidation.
 
+> [!NOTE]
+> The clustering policy chosen for an Azure Managed Redis instance impacts the connection method. The examples below work with Enterprise clustering and non-clustered configurations. If you're working with an instance using OSS clustering policy, you'll need to use `redis.cluster.RedisCluster` instead of `redis.Redis` for your connection.
+
 ## Connect to Azure Managed Redis with the redis library
 
 Before performing data operations, establish a connection to your Azure Managed Redis instance. The `redis` library supports both synchronous and asynchronous operations. 
@@ -330,6 +333,9 @@ except redis.ConnectionError as e:
 except redis.TimeoutError as e:
     print(f"Operation timed out: {e}")
     # Retry or use fallback
+except redis.ResponseError as e:
+    print(f"Redis command error: {e}")
+    # Handle Redis-specific errors
 except Exception as e:
     print(f"Unexpected error: {e}")
 ```
