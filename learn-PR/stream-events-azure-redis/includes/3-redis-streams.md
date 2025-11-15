@@ -202,6 +202,3 @@ While Streams provide powerful reliability features, they come with trade-offs y
 ## Additional resources
 
 - [Redis Streams Commands Reference](https://redis.io/docs/latest/commands/?group=stream) - Complete command documentation for implementing Streams
-- [Python Redis Client Documentation](https://redis-py.readthedocs.io/) - Python client library with Stream examples
-- [Azure Cache for Redis documentation](https://learn.microsoft.com/azure/azure-cache-for-redis/) - Azure service documentation
-- [Azure Managed Redis documentation](https://learn.microsoft.com/azure/redis/) - Azure Managed Redis documentation
