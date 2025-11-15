@@ -61,9 +61,9 @@ While pub/sub is powerful for real-time messaging, it has important limitations:
 
 - **No backpressure handling:** If subscribers can't keep up with message volume, Redis continues delivering messages, potentially causing memory issues or message loss in the subscriber applications.
 
-## When to use pub/sub vs. alternatives
+## When to use pub/sub 
 
-Understanding when to choose Redis pub/sub versus other messaging solutions is crucial for building effective AI systems. The decision depends on your requirements for message durability, delivery guarantees, and processing patterns.
+Understanding when to choose Redis pub/sub versus other messaging solutions is crucial for building effective AI systems. 
 
 **Use Redis pub/sub for AI solutions when you need**:
 - Real-time coordination between AI services with sub-millisecond latency
@@ -73,44 +73,105 @@ Understanding when to choose Redis pub/sub versus other messaging solutions is c
 - Simple event distribution for AI workflows without complex routing
 - Parallel processing triggers for multiple AI models
 
-**Consider Redis Streams or external message brokers for AI solutions when you need**:
-- Training data pipeline persistence and replay capabilities
-- Guaranteed delivery for critical AI model updates
-- Consumer group coordination for distributed AI processing
-- Backpressure handling for high-volume AI inference requests
-- Message acknowledgment and retry for expensive AI computations
+## Code examples for pub/sub
 
-## Integration with Azure Redis services
+This section provides practical code examples showing how to implement pub/sub in your AI applications. All examples in this section assume a Redis client connection named `redis_client` is implemented.
 
-Both Azure Cache for Redis and Azure Managed Redis fully support Redis pub/sub functionality across all service tiers. Both managed services handle the underlying Redis infrastructure while providing:
+### Publishing events from your application
 
-- **High availability**: Built-in replication ensures pub/sub continues operating during failovers
-- **Scaling**: Higher tiers support clustering, distributing pub/sub load across multiple Redis nodes
-- **Security**: Integration with Azure networking, authentication mechanisms, and private endpoints
-- **Monitoring**: Azure Monitor integration for tracking message volume and channel activity
+Use `PUBLISH` to send messages to channels. Publishers are typically part of your API handlers or services that detect events worth broadcasting.
 
-### Developer implementation
-
-From a development perspective, pub/sub implementation is identical across both Azure Redis services. Your applications use standard Redis clients and the same Redis commands (`PUBLISH`, `SUBSCRIBE`, `PSUBSCRIBE`) regardless of which Azure service you choose:
-
-```csharp
-// Same code works with both Azure Cache for Redis and Azure Managed Redis
-var subscriber = connection.GetSubscriber();
-subscriber.Subscribe("ai:conversations:*", (channel, message) => {
-    // Handle incoming AI events
-});
-
-subscriber.Publish("ai:model:updated", "recommendation-model-v2");
+```python
+# Publish a cache invalidation event
+def notify_model_updated(model_name, version):
+    message = f"{model_name}:{version}"
+    redis_client.publish('ai:models:updated', message)
+    
+# Publish embedding refresh notification
+def notify_embeddings_refreshed(collection_id):
+    redis_client.publish('ai:embeddings:refresh', collection_id)
 ```
 
-### Service-specific considerations
+### Subscribing to channels in worker services
 
-**Azure Managed Redis** offers other clustering policies:
-- **Enterprise clustering**: Single endpoint with internal routing
-- **OSS clustering**: Redis Cluster API for maximum throughput
-- **Non-clustered**: Traditional single-node behavior
+Use `SUBSCRIBE` to listen to specific channels. Subscribers run in background services or worker processes that react to events.
 
-All clustering policies support pub/sub transparently - your pub/sub code doesn't change based on the clustering policy chosen.
+```python
+# Subscribe to specific channels
+pubsub = redis_client.pubsub()
+pubsub.subscribe('ai:models:updated', 'ai:embeddings:refresh')
+
+# Listen for messages
+for message in pubsub.listen():
+    if message['type'] == 'message':
+        channel = message['channel']
+        data = message['data']
+        
+        if channel == 'ai:models:updated':
+            # Clear model cache
+            clear_model_cache(data)
+        elif channel == 'ai:embeddings:refresh':
+            # Refresh embedding cache
+            refresh_embeddings(data)
+```
+
+### Using pattern subscriptions
+
+Use `PSUBSCRIBE` to subscribe to multiple channels with pattern matching. This is useful when you want to listen to all channels in a category.
+
+```python
+# Subscribe to all AI-related channels
+pubsub = redis_client.pubsub()
+pubsub.psubscribe('ai:*')
+
+# Handle messages from any AI channel
+for message in pubsub.listen():
+    if message['type'] == 'pmessage':
+        pattern = message['pattern']  # 'ai:*'
+        channel = message['channel']  # Actual channel name
+        data = message['data']
+        
+        print(f"Received on {channel}: {data}")
+        handle_ai_event(channel, data)
+```
+
+### Broadcasting to WebSocket clients
+
+Combine pub/sub with WebSocket connections to push real-time AI updates to browser clients.
+
+```python
+from fastapi import FastAPI, WebSocket
+import redis.asyncio as redis
+import asyncio
+
+app = FastAPI()
+
+# Background task to listen for Redis pub/sub messages
+async def redis_listener(websocket: WebSocket):
+    redis_client = redis.Redis(
+        host='your-redis.redis.cache.windows.net',
+        port=<PORT>,
+        password='your-access-key',
+        ssl=True,
+        decode_responses=True
+    )
+    
+    async with redis_client.pubsub() as pubsub:
+        await pubsub.subscribe('ai:predictions:ready')
+        
+        async for message in pubsub.listen():
+            if message['type'] == 'message':
+                # Forward Redis message to WebSocket client
+                await websocket.send_json({
+                    'type': 'prediction',
+                    'data': message['data']
+                })
+
+@app.websocket("/ws/{client_id}")
+async def websocket_endpoint(websocket: WebSocket, client_id: str):
+    await websocket.accept()
+    await redis_listener(websocket)
+```
 
 ## Additional resources
 
