@@ -1,4 +1,4 @@
-Both Azure Cache for Redis and Azure Managed Redis support Redis Streams, a reliable way to implement task queues and event processing in your AI backend services. When you're building AI applications that need to queue inference requests, coordinate multi-step processing pipelines, or handle long-running AI operations with automatic retry, Streams give you the durability and coordination capabilities that pub/sub doesn't provide.
+Both Azure Cache for Redis and Azure Managed Redis support Redis Streams, a reliable way to implement task queues and event processing in your AI backend services. When you're building AI applications that need to queue inference requests, coordinate multi-step processing pipelines, or handle long-running AI operations, Streams give you the durability and coordination capabilities that pub/sub doesn't provide.
 
 Imagine you're building an API that processes documents through multiple AI models. Each step takes several seconds, and you can't block the API or lose documents if a service crashes. Redis Streams solves this: your upload handler adds the document to a Stream and returns immediately. Each AI service reads from the Stream at its own pace. If a service crashes while processing a document, that task stays in the pending list and gets automatically reassigned when the service restarts.
 
@@ -33,7 +33,7 @@ stream_id = redis.xadd('ai:inference:requests', {
 # Returns ID like: '1699980000000-0'
 ```
 
-The ID ensures tasks are processed in order and lets you track which tasks have been completed.
+The ID ensures tasks are processed in order and lets you track which tasks are completed.
 
 ### Scaling with multiple workers
 
@@ -56,7 +56,7 @@ while True:
         redis.xack('ai:inference:requests', 'workers', task_id)
 ```
 
-Now you can scale horizontally—add more worker instances and they'll automatically share the workload.
+Now you can scale horizontally—add more worker instances to share the workload.
 
 ## When to use Streams
 
@@ -182,7 +182,7 @@ def get_queue_stats():
 
 While Streams provide powerful reliability features, they come with trade-offs you should understand before implementing them in your AI applications.
 
-- **Memory management is your responsibility:** Unlike pub/sub where messages disappear after delivery, Stream tasks stay in memory until you explicitly remove them. For high-volume queues, you'll need to add trimming to your code:
+- **Memory management is your responsibility:** Unlike pub/sub where messages disappear after delivery, Stream tasks stay in memory until you explicitly remove them. For high-volume queues, you need to add trimming to your code:
 
     ```python
     # Trim to most recent 10,000 tasks when adding new ones

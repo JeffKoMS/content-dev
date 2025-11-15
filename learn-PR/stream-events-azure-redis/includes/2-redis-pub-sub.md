@@ -75,7 +75,7 @@ Understanding when to choose Redis pub/sub versus other messaging solutions is c
 
 ## Code examples for pub/sub
 
-This section provides practical code examples showing how to implement pub/sub in your AI applications. All examples in this section assume a Redis client connection named `redis_client` is implemented.
+This section provides code examples showing how to implement pub/sub in your AI applications. All examples in this section assume a Redis client connection named `redis_client` is implemented.
 
 ### Publishing events from your application
 
